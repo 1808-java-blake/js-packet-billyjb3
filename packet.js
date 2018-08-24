@@ -1,31 +1,35 @@
 function start()
 {
 	//1 1 2 3 5 8 13
-	console.log(fib(7));
+	// console.log(fib(7));
 
-	let array = [1, 5, 3, 6, 2, 8, 23, 64, 12, 43, 11, 75, 45, 23, 53, 74];
-	console.log(bubbleSort(array));
-	console.log(reverseStr("reverse this"));
-	console.log(factorial(5));
-	console.log(substring("substring" ,3, 1));
-	console.log(isEven(17));
-	console.log(isPalindrome("adcda"));
-	printShape("Square", 3, "*");
-	printShape("Triangle", 5, "*");
-	printShape("Diamond", 7, "*");
-	console.log(array);
-	deleteElement(array);
-	console.log(array);
+	// let array = [1, 5, 3, 6, 2, 8, 23, 64, 12, 43, 11, 75, 45, 23, 53, 74];
+	// console.log(bubbleSort(array));
+	// console.log(reverseStr("reverse this"));
+	// console.log(factorial(5));
+	// console.log(substring("substring" ,3, 1));
+	// console.log(isEven(17));
+	// console.log(isPalindrome("adcda"));
+	// printShape("Square", 3, "*");
+	// printShape("Triangle", 5, "*");
+	// printShape("Diamond", 7, "*");
+	// console.log(array);
+	// deleteElement(array);
+	// console.log(array);
 
-	console.log(array);
-	splicElement(array);
-	console.log(array);
+	// console.log(array);
+	// splicElement(array);
+	// console.log(array);
 
-	let john = getPerson("john", 25);
-	console.log(john.name);
-	console.log(john.age);
+	// let john = getPerson("john", 25);
+	// console.log(john.name);
+	// console.log(john.age);
 
-	getPeopleInSales();
+	//getUSA();
+	//getPeopleInSales();
+	//getAnchorChildren();
+	//getHobbies();
+	getCustomAttribute();
 }
 
 
@@ -203,9 +207,16 @@ function getPerson(name, age)
 	return {name:name, age:age};
 }
 
+
+///////////////////////////////PART 2///////////////////////////////
+
+
 function getUSA()
 {
-	
+
+	// let h1 = document.lastElementChild.lastElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild;
+	// let span = h1.firstElementChild.nextElementSibling;
+	// console.log(`Element type: ${span.nodeName}, Element content: ${span.innerText}`);
 }
 
 function getPeopleInSales()
@@ -229,6 +240,50 @@ function getPeopleInSales()
 				}
 			}
 		}
+	}
+}
+
+function getAnchorChildren()
+{
+	let anchors = document.getElementsByTagName("a");
+	for(let i = 0; i < anchors.length; i++)
+	{
+		let children = anchors[i].childNodes;
+		for(let j = 0; j < children.length; j++)
+		{
+			if(children[j].nodeName === "SPAN")
+				console.log(children[j].innerText);
+		}
+	}
+}
+
+function getHobbies()
+{
+	let select = document.getElementsByName("skills")[0];
+	let selected = select.options[select.selectedIndex];
+	let svalue = selected.value;
+	let stext = selected.text;
+	console.log(`Selected value: ${svalue}, Selected text: ${stext}`);
+}
+
+function getCustomAttribute()
+{
+	let elements = document.querySelectorAll("[data-customAttr]");
+	for(let i = 0; i < elements.length; i++)
+	{
+		let element = elements[i].nodeName;
+		let value = elements[i].getAttribute("data-customAttr");
+		console.log(`Element: ${element}, Value: ${value}`);
+	}
+}
+
+function walkTheDom(node, func)
+{
+	let children = node.childNodes;
+	for(let i = 0; i < children.length; i++)
+	{
+		func(children[i]);
+		walkTheDom(children[i], func);
 	}
 }
 
