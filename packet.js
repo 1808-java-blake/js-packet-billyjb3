@@ -1,3 +1,6 @@
+var lastColor;
+var colors;
+
 function start()
 {
 	//1 1 2 3 5 8 13
@@ -29,7 +32,15 @@ function start()
 	//getPeopleInSales();
 	//getAnchorChildren();
 	//getHobbies();
-	getCustomAttribute();
+	//getCustomAttribute();
+
+	document.getElementById("num1").addEventListener("change", sumInputs);
+	document.getElementById("num2").addEventListener("change", sumInputs);
+	document.getElementsByName("skills")[0].addEventListener("change", skillSelect);
+
+	colors = document.getElementsByName("favoriteColor");
+	for(let i = 0; i < colors.length; i++)
+		colors[i].addEventListener("click", colorChanged);
 }
 
 
@@ -277,6 +288,59 @@ function getCustomAttribute()
 	}
 }
 
+function sumInputs()
+{
+	let span = document.getElementById("sum");
+	let in1 = document.getElementById("num1");
+	let in2 = document.getElementById("num2");
+	let sum = parseInt(in1.value)+parseInt(in2.value);
+	if(isNaN(sum))
+		span.innerText = "Cannot add";
+	else
+		span.innerText = sum;
+}
+
+function skillSelect()
+{
+	let skills = document.getElementsByName("skills")[0];
+	let skill = skills.options[skills.selectedIndex].value;
+	alert(`Are you sure ${skill} is one of your skills?`);
+}
+
+function colorChanged(event)
+{
+	let selected = event.target;
+	let color = selected.value;
+
+	for(let i = 0; i < colors.length; i++)
+	{
+		let text = colors[i].nextSibling;
+		let br = text.nextSibling;
+		let parent = text.parentNode;
+
+		let p = document.createElement("p");
+		p.innerText = text.textContent;
+		parent.removeChild(text);
+
+		parent.insertBefore(p, br);
+		p.style.backgroundColor = color;
+		p.style.display = "inline";
+	}
+	
+	if(lastColor == undefined)
+	{
+		lastColor = color;
+	}
+	else
+	{
+		alert(`So you like ${color} more than ${lastColor} now?`);
+		lastcolor = color;
+	}
+}
+
+	
+
+
 function walkTheDom(node, func)
 {
 	let children = node.childNodes;
@@ -286,5 +350,7 @@ function walkTheDom(node, func)
 		walkTheDom(children[i], func);
 	}
 }
+
+
 
 addEventListener("load", start, false);
