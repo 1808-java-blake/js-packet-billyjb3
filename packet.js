@@ -16,6 +16,9 @@ function start()
 	// printShape("Square", 3, "*");
 	// printShape("Triangle", 5, "*");
 	// printShape("Diamond", 7, "*");
+	// let testobject = {name: "testobject", color: "green", age: 5};
+	// console.log(testobject.name);
+	// traverseObject(testobject);
 	// console.log(array);
 	// deleteElement(array);
 	// console.log(array);
@@ -41,6 +44,14 @@ function start()
 	colors = document.getElementsByName("favoriteColor");
 	for(let i = 0; i < colors.length; i++)
 		colors[i].addEventListener("click", colorChanged);
+
+	let employees = document.querySelectorAll(".empName");
+	for(let i = 0; i < employees.length; i++)
+		employees[i].addEventListener("mouseover", empHover);
+
+	theClock();
+
+	document.getElementById("helloWorld").addEventListener("click", helloClicked);
 }
 
 
@@ -182,7 +193,8 @@ function printShape(shape, height, character)
 
 function traverseObject(object)
 {
-
+	for(let property in object)
+		console.log(`Propert: ${property}, Value: ${object[property]}`);
 }
 
 function deleteElement(someArr)
@@ -338,8 +350,57 @@ function colorChanged(event)
 	}
 }
 
-	
+function empHover(event)
+{
+	let emp = event.target;
+	let opacity = window.getComputedStyle(emp, null)["opacity"];
+	if(opacity == 1)
+		emp.style.opacity = 0;
+	else
+		emp.style.opacity = 1;	
+}
 
+function theClock()
+{
+	let date = new Date();
+	let hour = date.getHours();
+	let min = date.getMinutes();
+	let sec = date.getSeconds();
+
+	if(sec < 10)
+		sec = "0" + sec;
+
+	if(min < 10)
+		min = "0" + min;
+
+	let suf;
+
+	if(hour > 12)
+	{
+		hour = hour - 12;
+		suf = "PM";
+	}
+	else
+		suf = "AM";
+
+	let dis = document.getElementById("currentTime");
+	dis.innerText = hour + ":" + min + ":" + sec + " "+suf;
+
+	setTimeout(theClock, 500);
+}
+
+function helloClicked()
+{
+	setTimeout(helloColor, 3000);
+}
+function helloColor()
+{
+	let text = document.getElementById("helloWorld");
+	let r = Math.floor(Math.random()*255 + 1);
+	let g = Math.floor(Math.random()*255 + 1);
+	let b = Math.floor(Math.random()*255 + 1);
+	text.style.color = `rgb(${r},${g},${b}`;
+}
 
 function walkTheDom(node, func)
 {
