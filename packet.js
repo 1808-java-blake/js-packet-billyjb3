@@ -1,42 +1,20 @@
 var lastColor;
 var colors;
 
+// Javascript Homework
+// Due Monday COB
+// Put all homework in:
+// github classroom created for you
+// -----------------------------------------------------------------------------------
+// PART I
+
+// Create a single Javascript file called packet.js to answer these questions.
+// Please put the question itself as a comment above each answer.
+// -----------------------------------------------------------------------------------
+
+//function called on load event
 function start()
 {
-	//1 1 2 3 5 8 13
-	// console.log(fib(7));
-
-	// let array = [1, 5, 3, 6, 2, 8, 23, 64, 12, 43, 11, 75, 45, 23, 53, 74];
-	// console.log(bubbleSort(array));
-	// console.log(reverseStr("reverse this"));
-	// console.log(factorial(5));
-	// console.log(substring("substring" ,3, 1));
-	// console.log(isEven(17));
-	// console.log(isPalindrome("adcda"));
-	// printShape("Square", 3, "*");
-	// printShape("Triangle", 5, "*");
-	// printShape("Diamond", 7, "*");
-	// let testobject = {name: "testobject", color: "green", age: 5};
-	// console.log(testobject.name);
-	// traverseObject(testobject);
-	// console.log(array);
-	// deleteElement(array);
-	// console.log(array);
-
-	// console.log(array);
-	// splicElement(array);
-	// console.log(array);
-
-	// let john = getPerson("john", 25);
-	// console.log(john.name);
-	// console.log(john.age);
-
-	//getUSA();
-	//getPeopleInSales();
-	//getAnchorChildren();
-	//getHobbies();
-	//getCustomAttribute();
-
 	document.getElementById("num1").addEventListener("change", sumInputs);
 	document.getElementById("num2").addEventListener("change", sumInputs);
 	document.getElementsByName("skills")[0].addEventListener("change", skillSelect);
@@ -52,8 +30,14 @@ function start()
 	theClock();
 
 	document.getElementById("helloWorld").addEventListener("click", helloClicked);
+	walkTheDom(document, function(node){
+		console.log(node);
+	})
 }
 
+// 1. Fibonacci
+// Define function: fib(n) 
+// Return the nth number in the fibonacci sequence.
 
 function fib(nth)
 {
@@ -70,6 +54,11 @@ function fib(nth)
 	}
 	return current;
 }
+
+// 2. Bubble Sort
+// Define function: bubbleSort(numArray)
+// Use the bubble sort algorithm to sort the array.
+// Return the sorted array.
 
 function bubbleSort(numArray)
 {
@@ -93,6 +82,10 @@ function bubbleSort(numArray)
 	return numArray;
 }
 
+// 3. Reverse String
+// Define function: reverseStr(someStr)
+// Reverse and return the String.
+
 function reverseStr(someStr)
 {
 	let chars = someStr.split("");
@@ -102,12 +95,21 @@ function reverseStr(someStr)
 	return reversed.join("");
 }
 
+// 4. Factorial
+// Define function: factorial(someNum)
+// Use recursion to compute and return the factorial of someNum.
+
 function factorial(someNum)
 {
 	if(someNum == 1)
 		return 1;
 	return someNum*factorial(someNum - 1); 
 }
+
+// 5. Substring
+// Define function substring(someStr, length, offset)
+// Return the substring contained between offset and (offset + length) inclusively.
+// If incorrect input is entered, use the alert function and describe why the input was incorrect.
 
 function substring(someStr, length, offset)
 {
@@ -123,6 +125,11 @@ function substring(someStr, length, offset)
 	return sub.join("");
 }
 
+// 6. Even Number
+// Define function: isEven(someNum)
+// Return true if even, false if odd.
+// Do not use % operator.
+
 function isEven(someNum)
 {
 	let even = true;
@@ -130,6 +137,10 @@ function isEven(someNum)
 		even = !even;
 	return even;
 }
+
+// 7. Palindrome
+// Define function isPalindrome(someStr)
+// Return true if someStr is a palindrome, otherwise return false
 
 function isPalindrome(someStr)
 {
@@ -141,6 +152,28 @@ function isPalindrome(someStr)
 		return true;
 	return false;
 }
+
+// 8. Shapes
+// Define function: printShape(shape, height, character)
+// shape is a String and is either "Square", "Triangle", "Diamond".
+// height is a Number and is the height of the shape. Assume the number is odd.
+// character is a String that represents the contents of the shape. Assume this String contains just one character.
+// Use a switch statement to determine which shape was passed in.
+// Use the console.log function to print the desired shape.
+// Example for printShape("Square", 3, "%");
+// %%%
+// %%%
+// %%%
+// Example for printShape("Triangle", 3, "$");
+// $
+// $$
+// $$$
+// Example for printShape("Diamond", 5, "*");
+//   *
+//  ***
+// *****
+//  ***
+//   *
 
 function printShape(shape, height, character)
 {
@@ -191,11 +224,22 @@ function printShape(shape, height, character)
 	}
 }
 
+// 9. Object literal
+// Define function traverseObject(someObj)
+// Print every property and it's value.
+
 function traverseObject(object)
 {
 	for(let property in object)
 		console.log(`Propert: ${property}, Value: ${object[property]}`);
 }
+
+// 10. Delete Element
+// Define function deleteElement(someArr)
+// Print length
+// Delete the third element in the array.
+// Print length
+// The lengths should be the same.
 
 function deleteElement(someArr)
 {
@@ -203,6 +247,13 @@ function deleteElement(someArr)
 	someArr[2] = undefined;
 	console.log(someArr.length);
 }
+
+// 11. Splice Element
+// Define function spliceElement(someArr)
+// Print length
+// Splice the third element in the array.
+// Print length
+// The lengths should be one less than the original length.
 
 function splicElement(someArr)
 {
@@ -219,28 +270,55 @@ function splicElement(someArr)
 	console.log(someArr.length);
 }
 
+// 12. Defining an object using a constructor
+// Define a function Person(name, age)
+// The following line should set a Person object to the variable john:
+// 	var john = new Person("John", 30);
+
 function Person(name, age)
 {
 	this.name = name;
 	this.age = age;
 }
 
+// 13. Defining an object using an object literal
+// Define function getPerson(name, age)
+// The following line should set a Person object to the variable john:
+// 	var john = getPerson("John", 30);
+
 function getPerson(name, age)
 {
 	return {name:name, age:age};
 }
+ 
 
+ 
+// -----------------------------------------------------------------------------------
+// PART II
 
-///////////////////////////////PART 2///////////////////////////////
+// Part II will focus on Javascript's ability to manipulate the DOM.
+// Use the provided index.html
+// Put your Javascript in the provided <script> element at the bottom of the page or in a separate .js file next to it.
+// Please put the question itself as a comment above each answer.
 
+// -----------------------------------------------------------------------------------
+
+// 1. USA
+// Define function getUSA()
+// Find the html element that contains "USA".
+// Print that element's contents.
 
 function getUSA()
 {
 
-	// let h1 = document.lastElementChild.lastElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild;
-	// let span = h1.firstElementChild.nextElementSibling;
-	// console.log(`Element type: ${span.nodeName}, Element content: ${span.innerText}`);
+	let h1 = document.lastElementChild.lastElementChild.firstElementChild.firstElementChild.nextElementSibling.firstElementChild;
+	let span = h1.firstElementChild.nextElementSibling;
+	console.log(`Element type: ${span.nodeName}, Element content: ${span.innerText}`);
 }
+  
+// 2. Sales
+// Define function getPeopleInSales()
+// Print the names of all the people in the sales department.
 
 function getPeopleInSales()
 {
@@ -265,6 +343,11 @@ function getPeopleInSales()
 		}
 	}
 }
+  
+// 3. Click Here
+// Define function getAnchorChildren()
+// Find all anchor elements with a <span> child.
+// Print the contents of <span>
 
 function getAnchorChildren()
 {
@@ -279,6 +362,11 @@ function getAnchorChildren()
 		}
 	}
 }
+  
+// 4. Hobbies
+// Define function getHobbies()
+// Find all checked options in the 'skills' select element.
+// Print the value and the contents.
 
 function getHobbies()
 {
@@ -288,6 +376,12 @@ function getHobbies()
 	let stext = selected.text;
 	console.log(`Selected value: ${svalue}, Selected text: ${stext}`);
 }
+  
+// 5. Custom Attribute
+// Define function getCustomAttribute()
+// Find all elements with "data-customAttr" attribute
+// Print the value of the attribute.
+// Print the element that has the attribute.
 
 function getCustomAttribute()
 {
@@ -299,6 +393,17 @@ function getCustomAttribute()
 		console.log(`Element: ${element}, Value: ${value}`);
 	}
 }
+
+// 6. Sum Event
+// NOTE: Write unobtrusive Javascript
+// Regarding these elements:
+// 	<input id="num1" class="nums" type="text"/>
+// 	<input id="num2" class="nums" type="text"/>
+// 	<h3>Sum: <span id="sum"></span></h3>
+// Define onchange event handler.
+// Add <input> element values.
+// Put the sum in the <span> element.
+// If values cannot be added, put "Cannot add" in the <span> element
 
 function sumInputs()
 {
@@ -312,12 +417,26 @@ function sumInputs()
 		span.innerText = sum;
 }
 
+// 7. Skills Event
+// NOTE: Write unobtrusive Javascript
+// When user selects a skill, create an alert with a message similar to:
+// 	"Are you sure CSS is one of your skills?"
+// NOTE: no alert should appear when user deselects a skill.
+
 function skillSelect()
 {
 	let skills = document.getElementsByName("skills")[0];
 	let skill = skills.options[skills.selectedIndex].value;
 	alert(`Are you sure ${skill} is one of your skills?`);
 }
+
+// 8. Favorite Color Event
+// NOTE: Write unobtrusive Javascript
+// NOTE: This is regarding the favoriteColor radio buttons.
+// When a user selects a color, create an alert with a message similar to:
+// 	"So you like green more than blue now?"
+// In this example, green is the new value and blue is the old value.
+// Make the background color (of all favoriteColor radio buttons) the newly selected favoriteColor
 
 function colorChanged(event)
 {
@@ -350,6 +469,12 @@ function colorChanged(event)
 	}
 }
 
+// 9. Show/Hide Event
+// NOTE: Write unobtrusive Javascript
+// When user hovers over an employees name:
+// 	Hide the name if shown.
+// 	Show the name if hidden.
+
 function empHover(event)
 {
 	let emp = event.target;
@@ -359,6 +484,12 @@ function empHover(event)
 	else
 		emp.style.opacity = 1;	
 }
+
+// 10. Current Time
+// Regarding this element:
+// 	<h5 id="currentTime"></h5>
+// Show the current time in this element in this format: 9:05:23 AM
+// The time should be accurate to the second without having to reload the page.
 
 function theClock()
 {
@@ -389,18 +520,26 @@ function theClock()
 	setTimeout(theClock, 500);
 }
 
+// 11. Delay
+// Regarding this element:
+// 	<p id="helloWorld">Hello, World!</p>
+// Three seconds after a user clicks on this element, change the text to a random color.
+
 function helloClicked()
 {
-	setTimeout(helloColor, 3000);
+	setTimeout(function(){
+		let text = document.getElementById("helloWorld");
+		let r = Math.floor(Math.random()*255 + 1);
+		let g = Math.floor(Math.random()*255 + 1);
+		let b = Math.floor(Math.random()*255 + 1);
+		text.style.color = `rgb(${r},${g},${b}`;
+	}, 3000);
 }
-function helloColor()
-{
-	let text = document.getElementById("helloWorld");
-	let r = Math.floor(Math.random()*255 + 1);
-	let g = Math.floor(Math.random()*255 + 1);
-	let b = Math.floor(Math.random()*255 + 1);
-	text.style.color = `rgb(${r},${g},${b}`;
-}
+
+// 12. Walk the DOM
+// Define function walkTheDOM(node, func)
+// This function should traverse every node in the DOM. Use recursion.
+// On each node, call func(node).
 
 function walkTheDom(node, func)
 {
@@ -411,7 +550,5 @@ function walkTheDom(node, func)
 		walkTheDom(children[i], func);
 	}
 }
-
-
 
 addEventListener("load", start, false);
